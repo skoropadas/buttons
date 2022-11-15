@@ -3,3 +3,9 @@
 <app-library-button-group [formControl]="libraryFC">
   <app-library-button *ngFor="let fruit of fruits" [value]="fruit">{{fruit}}</app-library-button>
 </app-library-button-group>
+
+<h2>Without library</h2>
+<div>FormControl value: {{noLibraryFC.value}}</div>
+<app-no-library-button-group [formControl]="noLibraryFC">
+  <app-no-library-button *ngFor="let fruit of fruits" [value]="fruit">{{fruit}}</app-no-library-button>
+</app-no-library-button-group>
