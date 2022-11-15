@@ -14,4 +14,8 @@ import {FL_CONTROL_HOST, FL_DEFAULT_COMPARE, FlCompareFunction, FlCompareHost, F
 export class LibraryButtonGroupComponent<T> extends FlControlHost<T> implements FlCompareHost<T> {
   @Input()
   compareFn: FlCompareFunction = FL_DEFAULT_COMPARE;
+
+  constructor() {
+    super();
+  }
 }
