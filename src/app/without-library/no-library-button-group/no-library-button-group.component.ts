@@ -1,7 +1,7 @@
-import {AfterContentInit, ChangeDetectionStrategy, Component, ContentChildren, OnInit, QueryList} from '@angular/core';
+import {AfterContentInit, ChangeDetectionStrategy, Component, ContentChildren, QueryList} from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {NoLibraryButtonComponent} from '../no-library-button/no-library-button.component';
-import {startWith, switchMap} from 'rxjs/operators';
+import {startWith, switchMap, tap} from 'rxjs/operators';
 import {merge} from 'rxjs';
 
 @Component({
@@ -11,26 +11,25 @@ import {merge} from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [{
     provide: NG_VALUE_ACCESSOR,
-    useExisting: NoLibraryButtonGroupComponent
+    useExisting: NoLibraryButtonGroupComponent,
+    multi: true
   }]
 })
-export class NoLibraryButtonGroupComponent<T> implements OnInit, AfterContentInit, ControlValueAccessor {
+export class NoLibraryButtonGroupComponent<T> implements AfterContentInit, ControlValueAccessor {
   @ContentChildren(NoLibraryButtonComponent)
   buttons: QueryList<NoLibraryButtonComponent<T>>;
 
   private onChange: (v: T) => void;
   private onTouched: () => void;
+  private value: T | null = null;
 
   constructor() { }
-
-  ngOnInit(): void {
-
-  }
 
   ngAfterContentInit(): void {
     this.buttons
         .changes
         .pipe(
+            tap(() => this.selectValue(this.value)),
             startWith(this.buttons),
             switchMap((buttons: QueryList<NoLibraryButtonComponent<T>>) =>
               merge(...buttons.map((b: NoLibraryButtonComponent<T>) => b.onSelected()))
@@ -51,7 +50,8 @@ export class NoLibraryButtonGroupComponent<T> implements OnInit, AfterContentIni
   }
 
   writeValue(obj: T): void {
-    this.selectValue(obj);
+    this.value = obj;
+    this.selectValue(this.value);
   }
 
   private selectValue(v: T): void {
