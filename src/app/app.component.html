@@ -1,4 +1,5 @@
-<hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
+<h2>With library</h2>
+<div>FormControl value: {{libraryFC.value}}</div>
+<app-library-button-group [formControl]="libraryFC">
+  <app-library-button *ngFor="let fruit of fruits" [value]="fruit">{{fruit}}</app-library-button>
+</app-library-button-group>
