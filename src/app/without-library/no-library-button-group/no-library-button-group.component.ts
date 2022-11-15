@@ -47,8 +47,9 @@ export class NoLibraryButtonGroupComponent<T>
         )
       )
       .subscribe((selected: NoLibraryButtonComponent<T>) => {
-        this.selectValue(selected.value);
-        this.onChange(selected.value);
+        this.value = selected.value;
+        this.selectValue(this.value);
+        this.onChange(this.value);
       });
   }
 
