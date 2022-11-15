@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {FL_CONTROL_HOST, FL_DEFAULT_COMPARE, FlCompareFunction, FlCompareHost, FlControlHost} from 'flex-controls';
 
 @Component({
@@ -14,10 +14,4 @@ import {FL_CONTROL_HOST, FL_DEFAULT_COMPARE, FlCompareFunction, FlCompareHost, F
 export class LibraryButtonGroupComponent<T> extends FlControlHost<T> implements FlCompareHost<T> {
   @Input()
   compareFn: FlCompareFunction = FL_DEFAULT_COMPARE;
-
-  constructor(
-      protected override host: FlControlHost<T>,
-  ) {
-    super(host);
-  }
 }
