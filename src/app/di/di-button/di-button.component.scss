@@ -1,0 +1,13 @@
+:host {
+  padding: 8px 16px;
+  border: 2px solid blue;
+  background: white;
+  border-radius: 8px;
+  margin-right: 8px;
+  cursor: pointer;
+
+  &[data-checked='true'] {
+    background-color: blue;
+    color: white;
+  }
+}

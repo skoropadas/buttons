@@ -15,3 +15,12 @@
     fruit
   }}</app-no-library-button>
 </app-no-library-button-group>
+
+<h2>DI Example</h2>
+<button (click)="diFC.setValue('Banana')">set Banana</button>
+<div>FormControl value: {{ diFC.value }}</div>
+<app-di-button-group [formControl]="diFC">
+  <app-di-button *ngFor="let fruit of fruits" [value]="fruit">{{
+    fruit
+  }}</app-di-button>
+</app-di-button-group>

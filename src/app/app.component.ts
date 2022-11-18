@@ -11,4 +11,5 @@ export class AppComponent  {
   fruits: string[] = ['Apple', 'Kiwi', 'Watermelon', 'Banana'];
   libraryFC: FormControl = new FormControl<any>('');
   noLibraryFC: FormControl = new FormControl<any>('');
+  diFC: FormControl = new FormControl<any>('');
 }
